@@ -1,5 +1,9 @@
+'use client'
+import { ThemeProvider } from 'next-themes'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Navber from '@/components/navber'
+import Footer from '@/components/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,7 +15,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+        <body className="{inter.className}, dark:bg-gray-600 text-white">
+            <ThemeProvider attribute="class">
+              <Navber></Navber>
+                <div className='h-screen p-10 bg-white dark:bg-gray-500 text-center'>
+                  {children}
+                </div>
+              <Footer></Footer>
+            </ThemeProvider>
+        </body>
     </html>
   )
 }
